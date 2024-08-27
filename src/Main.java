@@ -12,7 +12,7 @@ public class Main {
         long tid = 0;                    // for tidsmåling
 
 //Oppgave 1.2.2.2:
-        int[] a = Tabell.randPerm(20);              // en tilfeldig tabell
+        int[] a = Tabell.randPerm(2000);              // en tilfeldig tabell
         for (int k : a) System.out.print(k + " ");  // skriver ut a
         int m = Tabell.maks(a);   // finner posisjonen til største verdi
         System.out.println("\nStørste verdi ligger på plass " + m);
@@ -26,6 +26,9 @@ public class Main {
         Tabell.skrivln(a);        // se Oppgave 5 i Avsnitt 1.2.2
         System.out.print("Størst(" + a[m2] + ") har posisjon " + m2);
         System.out.println(", nest størst(" + a[nm] + ") har posisjon " + nm);
+
+//        Tabell.nestMaksv2(a);
+        System.out.println("Turneringstre: " + Arrays.toString(Tabell.nestMaksv2(a)));
 
 
 //        System.out.println("Indeksen til det største tallet er: " + Program.maks(tabell));
