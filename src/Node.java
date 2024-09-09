@@ -140,10 +140,8 @@ class BinarySearchTree {
 //            Alt 1: Noden har ett eller ingen barn.
             if (root.left == null) {
                 Node temp = root.right;
-                if (temp != null) {
-                    temp.parent = root.parent;
-                    return temp;
-                }
+                if (temp != null) temp.parent = root.parent;
+                return temp;
             } else if (root.right == null) {
                 Node temp = root.left;
                 temp.parent = root.parent;
@@ -151,10 +149,16 @@ class BinarySearchTree {
             }
 
 //            Alt 2: Noden har to barn, finn minste verdi i høyre subtre.
-            root.data = minValue(root.right);
+            Node successor = minValueNode(root.right);
+            // Replace the node's data with the successor's data
+            root.data = successor.data;
 
 //            Slett etterfølgeren
-            root.right = deleteData(root.right, root.data);
+            root.right = deleteData(root.right, successor.data);
+
+            if (root.right != null) {
+                root.right.parent = root;
+            }
         }
         return root;
     }
@@ -167,8 +171,13 @@ class BinarySearchTree {
         }
     }
 
-    
-
+    // Helper method to find the minimum value node in a subtree
+    Node minValueNode(Node node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
 
     //    Funksjon for å printe et visuelt tre
     void printVisualTree() {
