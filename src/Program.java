@@ -1,6 +1,9 @@
 import java.util.Arrays;
 import java.util.Random;
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
 public class Program {
     public static int maks(int[] tabell) // a er en heltallstabell
     {
@@ -238,5 +241,43 @@ public class Program {
         for (int i = 1; i < tabell.length; i++) {
         }  // en tom blokk
         return maksverdi;
+    }
+
+    public static int fib(int n)         // det n-te Fibonacci-tallet
+    {
+        if (n <= 1) return n;              // fib(0) = 0, fib(1) = 1
+        else return fib(n-1) + fib(n-2);   // summen av de to foregående
+    }
+
+    public static long fibonacciBinet(int n) {
+        double pha = pow(1 + sqrt(5), n);
+        double phb = pow(1 - sqrt(5), n);
+        double div = pow(2, n) * sqrt(5);
+
+        return (long) ((pha - phb) / div);
+    }
+    public static int tverrsum(long n)
+    {
+//        System.out.println("tverrsum(" + n + ") starter!");
+        long sum = (n < 10) ? n : tverrsum(n / 10) + (n % 10);
+//        System.out.println("tverrsum(" + n + ") er ferdig!");
+        return (int) sum;
+    }
+    public static int sifferrot(long n)
+    {
+        while (n >= 10) n = tverrsum(n);
+        return (int) n;
+    }
+    public static int[] tverrsumAvFibonacciTall(int grense) {
+        int[] resultat = new int[grense + 1]; // Array for å lagre tverrsummene
+
+        for (int i = 0; i <= grense; i++) {
+            long fibonacciTall = fibonacciBinet(i);
+            int tverrsum = tverrsum(fibonacciTall);
+            int sifferrot = sifferrot(tverrsum);
+            resultat[i] = sifferrot;
+        }
+
+        return resultat;
     }
 }

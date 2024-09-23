@@ -119,8 +119,7 @@ public class Tabell {
     public static int[] nestMin(int[] tabell) {
         int n = tabell.length;   // tabellens lengde
 
-        if (n < 2) throw new IllegalArgumentException
-                ("a.length(" + n + ") < 2!");
+        if (n < 2) throw new IllegalArgumentException("a.length(" + n + ") < 2!");
 
         int m = Tabell.min(tabell);   // m er posisjonen til tabellens minste verdi
 
@@ -190,11 +189,11 @@ public class Tabell {
     }    // n i posisjon 0, nm i posisjon 1
 
     /*
-    * Sjekk at Programkode 1.2.13 a) virker.
-    * Obs: metoden returnerer størst og nest størst verdi og ikke indeksene.
-    * Legg inn en setning som skriver ut tabellen b etter ut turneringen er gjennomført.
-    * Dermed kan en se resultatet av turneringen.
-    * */
+     * Sjekk at Programkode 1.2.13 a) virker.
+     * Obs: metoden returnerer størst og nest størst verdi og ikke indeksene.
+     * Legg inn en setning som skriver ut tabellen b etter ut turneringen er gjennomført.
+     * Dermed kan en se resultatet av turneringen.
+     * */
     public static int[] nestMaksv2(int[] tabell)   // en turnering
     {
         int n = tabell.length;                // for å forenkle notasjonen
@@ -202,18 +201,20 @@ public class Tabell {
         if (n < 2) // må ha minst to verdier!
             throw new IllegalArgumentException("Array size(" + n + ") < 2!");
 
-        int[] b = new int[2*n];          // turneringstreet
-        System.arraycopy(tabell,0,b,n,n);     // legger a bakerst i b
+        int[] b = new int[2 * n];          // turneringstreet
+        System.arraycopy(tabell, 0, b, n, n);     // legger a bakerst i b
 
-        for (int k = 2*n-2; k > 1; k -= 2)   // lager turneringstreet
-            b[k/2] = Math.max(b[k],b[k+1]);
+        for (int k = 2 * n - 2; k > 1; k -= 2)   // lager turneringstreet
+            b[k / 2] = Math.max(b[k], b[k + 1]);
 
         int maksverdi = b[1], nestmaksverdi = Integer.MIN_VALUE;
 
-        for (int m = 2*n - 1, k = 2; k < m; k *= 2)
-        {
-            int tempverdi = b[k+1];  // ok hvis maksverdi er b[k]
-            if (maksverdi != b[k]) { tempverdi = b[k]; k++; }
+        for (int m = 2 * n - 1, k = 2; k < m; k *= 2) {
+            int tempverdi = b[k + 1];  // ok hvis maksverdi er b[k]
+            if (maksverdi != b[k]) {
+                tempverdi = b[k];
+                k++;
+            }
             if (tempverdi > nestmaksverdi) nestmaksverdi = tempverdi;
         }
         System.out.println("Array etter turneringstre: " + Arrays.toString(Tabell.nestMin(b)));
@@ -221,5 +222,95 @@ public class Tabell {
         return Tabell.nestMin(b); // størst og nest størst
 
     } // nestMaks
+
+    public static void boblesorteringV1(int[] tabell)     // hører til klassen Tabell
+    {
+        for (int n = tabell.length; n > 1; n--)           // n reduseres med 1 hver gang
+        {
+            for (int i = 1; i < n; i++)                // går fra 1 til n
+            {
+                if (tabell[i - 1] > tabell[i]) bytt(tabell, i - 1, i);  // sammenligner/bytter
+            }
+        }
+    }
+
+    public static void boblesorteringV2(int[] array) {
+        for (int n = array.length; n > 1; ) {            // n er intervallgrense
+
+            int byttindeks = 0;                      // hjelpevariabel
+            for (int i = 1; i < n; i++) {              // går fra 1 til n
+
+                if (array[i - 1] > array[i]) {                   // sammenligner
+
+                    bytt(array, i - 1, i);                   // bytter
+                    byttindeks = i;                      // høyre indeks i ombyttingen
+                }
+            }
+            n = byttindeks;                          // ny intervallgrense
+        }
+    }
+
+    //Oppgave 1.3.3.3
+    public static void boblesorteringV2x(int[] a) {
+        for (int n = 0; n < a.length - 1; ) {
+            int byttindeks = a.length - 1;
+            for (int i = a.length - 2; i >= n; i--) {
+                if (a[i] > a[i + 1]) {
+                    bytt(a, i, i + 1);
+                    byttindeks = i;
+                }
+            }
+            n = byttindeks;
+        }
+    }
+
+    //Oppgave 1.3.5.1
+    public static int unsortedSearch(int[] array, int verdi) {
+        int sist = array.length - 1;
+        int temp = array[sist];  // tar vare på den siste
+        array[sist] = verdi;    // verdi blir vaktpost
+
+        for (int i = 0; ; i++)  // i < a.length er tatt vekk
+            if (verdi == array[i])    // dette blir sant før eller senere
+            {
+                array[sist] = temp;  // legger den siste tilbake
+                if (i == sist) return verdi == temp ? sist : -1;
+                else return i;
+            }
+    }
+
+    //Oppgave 1.3.5.2
+    public static int linearSearchOld(int[] array, int verdi) // legges i class Tabell
+    {
+        if (array.length == 0 || verdi > array[array.length - 1]) {
+            System.out.println("Length = 0 or value larger than length");
+            return -(array.length + 1);  // verdi er større enn den største
+        }
+       /* int i = 0;
+        while (array[i] < verdi)
+            i++;
+
+        if (verdi == array[i])
+            return i;
+        else
+            return -(i + 1);*/
+//         Klønete formulering:
+        int i = 0;
+        for (; array[i] < verdi; i++) ;  // siste verdi er vaktpost
+        System.out.println(verdi);
+        return verdi == array[i] ? i : -(i + 1);   // sjekker innholdet i a[i]
+    }
+    public static int linearSearch(int[] array, int fra, int til, int verdi)
+    {
+        fratilKontroll(array.length, fra, til);
+
+        if (fra == til || verdi > array[til - 1]) {
+            System.out.println("Range not good.");
+            return -(til + 1);  // verdi er større enn den største
+        }
+        int i = 0; for( ; array[i] < verdi; i++);  // siste verdi er vaktpost
+
+        return verdi == array[i] ? i : -(i + 1);   // sjekker innholdet i a[i]
+    }
 
 }

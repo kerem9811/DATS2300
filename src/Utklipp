@@ -1,0 +1,54 @@
+
+//        System.out.println("Indeksen til det største tallet er: " + Program.maks(tabell));
+//        System.out.println("Indeksen til det minste tallet er: " + Program.min(tabell));
+//        System.out.println("Indeksene til de minste og største tallene er: " + Arrays.toString(Program.minmaks(tabell)));
+//        System.out.println("Resultatet av " + fakultet + "! er " + Program.fakultet(fakultet));
+//        System.out.println("Indeksen til det største tallet i v2 er: " + Program.maksv2(tabell));
+//        System.out.println("Indeksen til det største tallet i v3 er: " + Program.maksv3(tabell));
+//        System.out.println("Indeksen til det største tallet i v3 er: " + Program.maksv3(tabell2));
+//        System.out.println("Vi prøver med en n på: " + n + ", forskjellen blir da: " + Program.euler(n));
+
+//        System.out.println(Arrays.toString(Program.randPerm(n))); //Skriver ut alle tallene i arrayet :-O
+
+       /* System.out.println("/////////////////////////////////////////////////////////");
+        System.out.println("TIDSBRUK ALGORITMER");
+        System.out.println("n er: " + n + " og antall gjentagelser er: " + antall);
+        tid = System.currentTimeMillis();    // leser av klokken
+        for (int i = 0; i < antall; i++) Program.kostnader(tabell3);
+        tid = System.currentTimeMillis() - tid;    // medgått tid
+        System.out.println("Faste kostnader: " + tid + " ms");*/
+
+       /* tid = System.currentTimeMillis();    // leser av klokken
+        for (int i = 0; i < antall; i++) Program.maks(tabell3);  // Programkode 1.1.2
+        tid = System.currentTimeMillis() - tid;     // medgått tid
+        System.out.println("Maks1-metoden: " + tid + " ms");*/
+
+       /* tid = System.currentTimeMillis();    // leser av klokken
+        for (int i = 0; i < antall; i++) Program.maksv2(tabell3);  // Programkode 1.1.4
+        tid = System.currentTimeMillis() - tid;     // medgått tid
+        System.out.println("Maks2-metoden: " + tid + " ms");*/
+
+       /* tid = System.currentTimeMillis();    // leser av klokken
+        for (int i = 0; i < antall; i++) Program.maksv3(tabell3);  // Programkode 1.1.5
+        tid = System.currentTimeMillis() - tid;     // medgått tid
+        System.out.println("Maks3-metoden: " + tid + " ms");*/
+
+       /* tid = System.currentTimeMillis();    // leser av klokken
+        for (int i = 0; i < antall; i++) Program.maksv3Forbedret(tabell3);  // Programkode 1.1.5
+        tid = System.currentTimeMillis() - tid;     // medgått tid
+        System.out.println("Maks3Gemini-metoden: " + tid + " ms");*/
+
+       /* tid = System.currentTimeMillis();    // leser av klokken
+        for (int i = 0; i < antall; i++) Program.maksv3Gemini(tabell3);  // Programkode 1.1.5
+        tid = System.currentTimeMillis() - tid;     // medgått tid
+        System.out.println("Maks3Geminiv2-metoden: " + tid + " ms");*/
+
+        /*tid = System.currentTimeMillis();    // leser av klokken
+        for (int i = 0; i < antall; i++) Program.maksv3Gemini2(tabell3);  // Programkode 1.1.5
+        tid = System.currentTimeMillis() - tid;     // medgått tid
+        System.out.println("MaksG-metoden: " + tid + " ms");
+*/
+        /*tid = System.currentTimeMillis();    // leser av klokken
+        for (int i = 0; i < antall; i++) Program.maksv3G8(tabell3);  // Programkode 1.1.5
+        tid = System.currentTimeMillis() - tid;     // medgått tid
+        System.out.println("MaksG8-metoden: " + tid + " ms");*/
